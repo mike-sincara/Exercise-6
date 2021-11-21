@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react';
 
 
 export default function ListUsers() {
@@ -9,7 +9,7 @@ export default function ListUsers() {
      useEffect(() => {
         fetch("https://reqres.in/api/users?page=2")
         .then((response) => response.json())
-        .then((json)=> setApi(json))
+        .then((data)=> setApi(data))
         .catch((err) => {
             setError(err);
           })
@@ -27,8 +27,8 @@ export default function ListUsers() {
     return (
         <div>
             <h3>User Page</h3> 
-               {
-                   users["data"].map((item)=>{
+               { users && users.length>0
+                  ? users.data.map((item)=>{
                     return(
                         <div key={item.id}>
                             <figure>
@@ -40,8 +40,8 @@ export default function ListUsers() {
                         <p>===============================</p>                                                                          
                         </div>
                     )                    
-                })
-               }
+                    })
+                : "Loading....."}
         </div>
     )
 }

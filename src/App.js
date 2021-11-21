@@ -1,5 +1,6 @@
 import React from "react";
 import ListUsers from './components/ListUsers';
+import Hapus from './components/Hapus';
 
 function App() {
   return (
