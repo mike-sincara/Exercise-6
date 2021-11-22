@@ -36,11 +36,11 @@ export default function ListUsers() {
     if (error || !Array.isArray(users)) {
         return <p>There was an error loading your data!</p>;
       }
-      
+
     return (
         <div>
             <h3>User Page</h3> 
-               <p>{users}</p>
+               {users}
         </div>
     )
 }
