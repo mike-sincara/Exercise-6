@@ -9,7 +9,19 @@ export default function ListUsers() {
      useEffect(() => {
         fetch("https://reqres.in/api/users?page=2")
         .then((response) => response.json())
-        .then((data)=> setApi(data))
+        .then((json)=> setApi(json.data.map((item)=>{
+            return(
+                <div key={item.id}>
+                    <figure>
+                        <img src={item.avatar} alt=""/> 
+                    </figure>                         
+                <p> first name:{item.first_name}  </p>                       
+                <p> last name:{item.last_name}   </p> 
+                <p> email:{item.email}   </p>      
+                <p>===============================</p>                                                                          
+                </div>
+            )            
+        })))
         .catch((err) => {
             setError(err);
           })
@@ -24,24 +36,11 @@ export default function ListUsers() {
     if (error || !Array.isArray(users)) {
         return <p>There was an error loading your data!</p>;
       }
+      
     return (
         <div>
             <h3>User Page</h3> 
-               { users && users.length>0
-                  ? users.data.map((item)=>{
-                    return(
-                        <div key={item.id}>
-                            <figure>
-                                <img src={item.avatar} alt=""/> 
-                            </figure>                         
-                        <p> first name:{item.first_name}  </p>                       
-                        <p> last name:{item.last_name}   </p> 
-                        <p> email:{item.email}   </p>      
-                        <p>===============================</p>                                                                          
-                        </div>
-                    )                    
-                    })
-                : "Loading....."}
+               <p>{users}</p>
         </div>
     )
 }
